@@ -1,4 +1,5 @@
 ---
+layout: plain_bootstrap
 title: Markdown test
 ---
 
