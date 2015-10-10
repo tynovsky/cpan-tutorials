@@ -291,10 +291,10 @@ we've already seen, the `cpanm` command comes from the distribution
 <pre>
 $ ack english
 lib/Acme/Hola.pm
-12:    $language //= '<span style='background-color:yellow'>english</span>';
+12:    $language //= '<span style='background-color:lightyellow'>english</span>';
 
 lib/Acme/Hola/Translator.pm
-8:        '<span style='background-color:yellow'>english</span> => 'Hello world',
+8:        '<span style='background-color:lightyellow'>english</span> => 'Hello world',
 </pre>
 
 Adding an executable to a distribution is a simple process. You just need to
