@@ -55,7 +55,7 @@ distributions.
 
     #!/usr/bin/env perl
     use Path::Tiny;
-    say Path::Tiny->cwd;
+    print Path::Tiny->cwd, "\n";
 
 ## Listing installed distributions
 
