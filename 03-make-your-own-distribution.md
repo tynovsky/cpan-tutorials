@@ -40,7 +40,7 @@ you can see some output from the module:
         print "Hello world!\n";
     }
 
-    1; # a Perl module must end with a true value
+    1 # a Perl module must end with a true value
 
 `META.json` file defines what's in the distribution, who made it, the version of
 the distribution, the license and other information. For now, we'll stick only
@@ -100,8 +100,11 @@ documentation. At the moment, none of them is present:
 If we started adding more files and functionality, things would get
 overcomplicated very soon. There are several tools that can assist with
 tedious tasks during CPAN distribution development, we will pick one of them
-called *Minilla*. Please install it with command `cpanm Minilla`. Then let's
-clean up what we build until now:
+called *Minilla* (it's a very opinionated one but I believe that for you as a
+novice CPAN author, it is most important to start with something. If you find
+later that it doesn't fit *your* opinions, you'll have enough knowledge to
+replace it with any of the plenty of other tools) . Please install it with
+command `cpanm Minilla`. Then let's clean up what we build until now:
 
     $ cpanm --uninstall Acme::Hola
     Acme::Hola contains the following files:
@@ -157,6 +160,13 @@ manually before and moreover several others:
 - `README.md` - extracted documentation from the main module of the
   distribution.
 
+`Minilla` also created Git repository for us, where we can version the code.
+It's a good idea to commit it right away:
+
+    $ git commit -m 'Initial commit - Minilla scaffold'
+
+## Using more files
+
 Let's re-create our code that prints out "Hello world". This time we'll add
 translations to other languages.
 
@@ -188,7 +198,7 @@ translations to other languages.
         }
     }
 
-    1;
+    1
     # here starts the pre-generated documentation, we'll get back to it later
 
 This file is getting pretty crowded. Let's break out the `Translator` into a
@@ -222,7 +232,7 @@ not change much:
         return $how_to_say_hi_in{$self->language};
     }
 
-    1;
+    1
 
 But now the `Acme/Hola.pm` file has some code to load the `Translator`:
 
@@ -239,8 +249,217 @@ But now the `Acme/Hola.pm` file has some code to load the `Translator`:
         my ($language) = @_;
         $language //= 'english';
         my $translator = Acme::Hola::Translator->new(language => $language);
-        print $translator->hi(), "\n";
+        return $translator->hi();
     }
 
-    1;
+    1
 
+Let's try this out:
+
+     $ perl -Ilib -MAcme::Hola -E 'say Acme::Hola::hi("english")'
+     Hello world
+
+     $ perl -Ilib -MAcme::Hola -E 'say Acme::Hola::hi("spanish")'
+     Hola mundo
+
+We need to use a strange command line flag here: `-Ilib`. Once the
+distribution is installed, you don't need to worry about configuring the load
+paths.  However, if you're running the code from outside installed CPAN
+modules, you have to configure things yourself. It's possible to manipulate
+the `@INC` from the code itself but that's considered an anti-pattern in most
+cases.
+
+If you've added more files to your distribution, make sure to remember and add
+them to the Git repository
+
+    $ git add lib/Acme/Hola/Translator.pm
+
+This way, you'll let `Minilla` index this file as a part of your CPAN
+distribution. And of course, it's good idea to commit your changes anyway as
+they represent a reasonable chunk of work:
+
+    $ git commit -a -m 'hi function and Translator class'
+
+## Adding an executable
+
+In addition to providing libraries of Perl code, CPAN distributions can also
+expose one or many executable files to your shell's `PATH`. One such example
+we've already seen, the `cpanm` command comes from the distribution
+`App::cpanminus`. Another example is `ack` command which can be installed by
+`cpanm App::Ack` and serves as pretty convenient `grep` alternative:
+
+<pre>
+$ ack english
+lib/Acme/Hola.pm
+12:    $language //= '<span style='background-color:yellow'>english</span>';
+
+lib/Acme/Hola/Translator.pm
+8:        '<span style='background-color:yellow'>english</span> => 'Hello world',
+</pre>
+
+Adding an executable to a distribution is a simple process. You just need to
+place the file in your distribution's `script` directory and `git add` it.
+Minilla will take care of the rest. Let's add one for our distribution. First
+create the file and make it executable:
+
+    $ mkdir script
+    $ touch script/hola
+    $ chmod a+x script/hola
+
+The executable file itself just needs a
+[shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) in order to figure
+out what program to run it with. Here's what Hola's executable looks like:
+
+    $ cat script/hola
+    #!/usr/bin/env perl
+
+    use Acme::Hola;
+    print Acme::Hola::hi($ARGV[0]), "\n";
+
+All it's doing is loading up the `Acme::Hola` module and passing the first
+command line argument as the language to say hello with. Here's an example of
+running it:
+
+    $ perl -Ilib script/hola
+    Hello world
+
+    $ perl -Ilib script/hola spanish
+    Hola mundo
+
+Your new command line utility works like a charm! Don't forget to `git add
+script/hola` and `git commit`.
+
+## Writing tests
+
+Testing your distribution is extremely important. Not only does it help assure
+you that your code works, but it helps others know that your distribution does
+its job. When evaluating a distribution, Perl developers tend to view a solid
+test suit (or lack thereof) as one of the main reasons for trusting that piece
+of code.
+
+Distributions support adding test files into the package itself so tests can
+be run when a distribution is installed. An entire community effort has sprung
+up called CPAN Testers to hel document how CPAN distribution test suites run
+on different architectures and interpreters of Perl.
+
+In short: *Test your distribution!* Please!
+
+`Test::More` is Perl's built-in test framework. There is a nice tutorial on
+how to write tests with it by its author:
+[Test::Tutorial](https://metacpan.org/pod/Test::Tutorial).  There are many
+other test frameworks available for Perl as well (for example
+[Test::Spec](https://metacpan.org/pod/Test::Spec) if you prefer writing tests
+in [BDD style](https://en.wikipedia.org/wiki/Behavior-driven_development)). At
+the end of the day, it doesn't matter what you use, just *test*!
+
+Let's add some tests to `Hola`. We already have the auto-generated test which
+checks if our module compiles. Let's add one which checks if our `hi` function
+returns expected greetings for given languages:
+
+    $ cat t/01_test_hola.t
+    use strict;
+    use Test::More tests => 3;
+    use Acme::Hola;
+
+    is(Acme::Hola::hi('english'), 'Hello world', 'English correct');
+    is(Acme::Hola::hi('spanish'), 'Hola mundo', 'Spanish correct');
+    is(Acme::Hola::hi(), 'Hello world', 'English is default');
+
+Now you can try it out:
+
+    $ perl -Ilib t/01_test_hola.t
+    1..3
+    ok 1 - English correct
+    ok 2 - Spanish correct
+    ok 3 - English is default
+
+It's green! Well, depending on your shell colors. Don't forget to `git add
+t/01_test_hola.t` and `git commit`. You can then also run the test using
+`minil test` command.  For more great examples, the best thing you an do is
+hunt around [Metacpan](https://metacpan.org) or [GitHub](https://github.com)
+and read some code.
+
+## Documenting your code
+
+The CPAN distributions are documented with inline documentation in [POD
+format](http://perldoc.perl.org/perlpod.html). You have it pre-generated by
+`Minilla` in `lib/Acme/Hello.pm` file, so it's pretty easy just to fill the
+prepared sections. Remember, one of the most important things about your
+distribution is the *SYNOPSIS* chapter in your docs. Give a good example there
+on what is the typical use of your distribution.
+
+Here's just a simple example of how the POD in `lib/Acme/Hello.pm` can look
+like:
+
+    $ cat lib/Acme/Hola.pm
+    ... # here is the code
+    __END__
+
+    =encoding utf-8
+
+    =head1 NAME
+
+    Acme::Hola - It's a program that greets world in given language.
+
+    =head1 SYNOPSIS
+
+        use Acme::Hola;
+        Acme::Hola::hi("spanish);
+
+        # or in your shell:
+        hola spanish
+
+    =head1 DESCRIPTION
+
+    Acme::Hola is a library that greets world in given language. Together with
+    the module an executable `hola` is installed which does the same on
+    command line.
+
+    =head1 LICENSE
+
+    Copyright (C) Your Name.
+
+    This library is free software; you can redistribute it and/or modify
+    it under the same terms as Perl itself.
+
+    =head1 AUTHOR
+
+    Your Name E<lt>your.name@example.comE<gt>
+
+    =cut
+
+If you now run `minil test`, you'll see that not only the distribution was
+tested but also the `README.md` file was regenerated. So if you upload your
+distribution to GitHub, it'll have nice documentation right on the main page.
+
+Don't forget to `git add` and `git commit` your changes.
+
+## Creating the distribution tarball with Minilla
+
+TODO: `Changes` file.
+
+Now we have a decent quality distribution, it does something and tests and
+documentation are there! Let's create the distribution tarball now. It is as
+simple as:
+
+    $ minil dist
+    ...
+    All tests successful.
+    Files=7, Tests=4,  0 wallclock secs ( 0.03 usr  0.01 sys +  0.10 cusr
+    0.01 csys =  0.15 CPU)
+    Result: PASS
+    Wrote Acme-Hola-0.1.0.tar.gz
+    Removing .../Acme-Hola/.build/JjrPuBTf
+
+Congratulations, your distribution is done! In next chapter, we'll describe
+how to get it onto CPAN.
+
+
+## Further reading
+
+Minilla alternatives:
+
+- [Dist::Zilla](http://dzil.org/)
+- [Dist::Milla](https://metacpan.org/pod/release/MIYAGAWA/Dist-Milla-v1.0.15/lib/Dist/Milla.pm)
+- [Module::Starter](https://metacpan.org/pod/release/XSAWYERX/Module-Starter-1.71/lib/Module/Starter.pm)
+- [mbtiny](https://metacpan.org/pod/App::ModuleBuildTiny)
