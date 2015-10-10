@@ -437,6 +437,7 @@ Don't forget to `git add` and `git commit` your changes.
 ## Creating the distribution tarball with Minilla
 
 TODO: `Changes` file.
+TODO: `Moo` dependency!
 
 Now we have a decent quality distribution, it does something and tests and
 documentation are there! Let's create the distribution tarball now. It is as
