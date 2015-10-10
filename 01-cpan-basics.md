@@ -70,14 +70,14 @@ have installed.
     $ cpanm --uninstall Path::Tiny
     Path::Tiny contains the following files:
 
-      /home/tynovsky/perl5/perlbrew/perls/perl-5.20.2/lib/site_perl/5.20.2/Path/Tiny.pm
-      /home/tynovsky/perl5/perlbrew/perls/perl-5.20.2/man/man3/Path::Tiny.3
+      .../lib/site_perl/5.20.2/Path/Tiny.pm
+      .../man/man3/Path::Tiny.3
 
     Are you sure you want to uninstall Path::Tiny? [y] y
 
-    Unlink: /home/tynovsky/perl5/perlbrew/perls/perl-5.20.2/lib/site_perl/5.20.2/Path/Tiny.pm
-    Unlink: /home/tynovsky/perl5/perlbrew/perls/perl-5.20.2/man/man3/Path::Tiny.3
-    Unlink: /home/tynovsky/perl5/perlbrew/perls/perl-5.20.2/lib/site_perl/5.20.2/x86_64-linux/auto/Path/Tiny/.packlist
+    Unlink: .../lib/site_perl/5.20.2/Path/Tiny.pm
+    Unlink: .../man/man3/Path::Tiny.3
+    Unlink: .../lib/site_perl/.../auto/Path/Tiny/.packlist
 
     Successfully uninstalled Path::Tiny
 

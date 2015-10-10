@@ -109,17 +109,14 @@ command `cpanm Minilla`. Then let's clean up what we build until now:
     $ cpanm --uninstall Acme::Hola
     Acme::Hola contains the following files:
 
-      .../lib/site_perl/5.20.2/Acme/Hola.pm
+      .../lib/site_perl/.../Acme/Hola.pm
       .../man/man3/Acme::Hola.3
 
     Are you sure you want to uninstall Acme::Hola? [y] y
 
-    Unlink:
-    .../lib/site_perl/.../Acme/Hola.pm
-    Unlink:
-    .../man/man3/Acme::Hola.3
-    Unlink:
-    .../lib/site_perl/.../x86_64-linux-thread-multi/auto/Acme/Hola/.packlist
+    Unlink: .../lib/site_perl/.../Acme/Hola.pm
+    Unlink: .../man/man3/Acme::Hola.3
+    Unlink: .../lib/site_perl/.../auto/Acme/Hola/.packlist
 
     Successfully uninstalled Acme::Hola
 
