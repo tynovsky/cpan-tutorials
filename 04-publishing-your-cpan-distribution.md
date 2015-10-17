@@ -1,4 +1,8 @@
-# Publishing your distribution
+---
+layout: plain_bootstrap
+title: Publishing Your CPAN Distribution
+---
+# Publishing Your CPAN Distribution
 
 Ways to share your distribution code with other users.
 
@@ -24,10 +28,10 @@ by running
 
     cpanm https://github.com/dagolden/Path-Tiny.git
 
-> Installing a distribution directly from a git repository is an additional
-> feature of `cpanm` tool, At the moment, it's not possible to do the same
-> with original `cpan` command or specify a git repository as a dependency of
-> another distribution.
+Installing a distribution directly from a git repository is an additional
+feature of `cpanm` tool, At the moment, it's not possible to do the same with
+original `cpan` command or specify a git repository as a dependency of another
+distribution.
 
 ## Serving your own Gems
 
@@ -50,7 +54,7 @@ can log in at the PAUSE site and upload your distribution tarball manually.
 Alternatively, if you used `Minilla` for authoring your distribution,
 publishing your distribution is as simple as
 
-    `minil release`
+    minil release
 
 Contratulations! Your new distribution is now ready for any Perl user in the
 world to install!
