@@ -37,8 +37,10 @@ distribution.
 
 If you want to control who can install a distribution, or directly track the
 activity surrounding a distribution, then you'll want to set up a private
-CPAN-like server. You can set your own server (e.g. using Pinto or OrePAN2) or
-use a commercial service such as ...
+CPAN-like server. You can set your own server (e.g. using
+[Pinto](https://metacpan.org/release/Pinto) or
+[OrePAN2](https://metacpan.org/pod/OrePAN2)) or use a commercial service such
+as [Stratopan](https://stratopan.com/).
 
 ## Publishing to CPAN
 
