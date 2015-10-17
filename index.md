@@ -20,5 +20,6 @@ and speed up your work.
 - [CPAN basics](01-cpan-basics.html)
 - [What is a CPAN distribution](02-what-is-distribution.html)
 - [Make your own CPAN distribution](03-make-your-own-distribution.html)
+- [Publishing your CPAN distribution](04-publishing-your-cpan-distribution.html)
 
 {% include LICENSE.md %}
