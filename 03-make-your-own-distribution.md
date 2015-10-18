@@ -463,8 +463,6 @@ dependency.
 
 ## Creating the distribution tarball with Minilla
 
-TODO: `Changes` file.
-
 Now we have a decent quality distribution, it does something and tests and
 documentation are there! Let's create the distribution tarball now. It is as
 simple as:

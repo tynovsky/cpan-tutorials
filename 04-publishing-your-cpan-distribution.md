@@ -37,7 +37,7 @@ distribution.
 
 If you want to control who can install a distribution, or directly track the
 activity surrounding a distribution, then you'll want to set up a private
-CPAN-like server. You can set your own server (e.g. using
+CPAN-like server. You can set up your own server (e.g. using
 [Pinto](https://metacpan.org/release/Pinto) or
 [OrePAN2](https://metacpan.org/pod/OrePAN2)) or use a commercial service such
 as [Stratopan](https://stratopan.com/).
@@ -53,13 +53,25 @@ To begin, you'll need to [create an account on
 PAUSE](https://pause.perl.org/pause/query?ACTION=request_id). PAUSE stands for
 "The [Perl programming] Authors Upload Server. After creating the account, you
 can log in at the PAUSE site and upload your distribution tarball manually.
-Alternatively, if you used `Minilla` for authoring your distribution,
-publishing your distribution is as simple as
 
-    minil release
+Alternatively, if you used `Minilla` for authoring your distribution,
+publishing is even simpler! First, install a few necessary modules (`cpanm
+Version::Next CPAN::Uploader`), then publishing is as simple as running one
+command:
+
+    $ minil release
 
 Contratulations! Your new distribution is now ready for any Perl user in the
 world to install!
+
+## Changes file
+
+It is a good practice to include `Changes` file with your distribution. It
+contains a description of every released version. This time, we had the file
+pre-created by Minilla, it only contained one line saying this is the initial
+version of our distribution. Next time when you're releasing the next version
+of your distribution, be sure to have your improvements listed under {{$NEXT}}
+line (`Minilla` will take care of the rest).
 
 ## Push permissions on CPAN
 
