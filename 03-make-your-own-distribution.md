@@ -431,10 +431,38 @@ distribution to GitHub, it'll have nice documentation right on the main page.
 
 Don't forget to `git add` and `git commit` your changes.
 
+## Handling dependencies
+
+You might have noted that we were using `Moo` module in our
+`Acme::Hola::Translator` module. The code for us without any problems because
+coincidentally the `Moo` distribution is a dependency of `Minilla`. But when
+another user installs our distribution, their don't necessarily have the `Moo`
+dependency installed. To be sure that the dependency is installed, we need to
+specify it in `META.json` package. To simplify the process, there is
+`cpanfile` pre-created by `Minilla` in our distribution directory.
+
+Let's add the dependency there:
+
+    $ cat cpanfile
+    requires 'perl', '5.008001';
+    requires 'Moo', '2'; # <--- here we require Moo version 2 or higher.
+
+    on 'test' => sub {
+        requires 'Test::More', '0.98';
+    };
+
+The format of `cpanfile` is self-explanatory, you can see there is a section
+for modules which are only needed during testing. If you want to know all
+possible usages, please read [the documetation of
+`cpanfile`](https://metacpan.org/pod/distribution/Module-CPANfile/lib/cpanfile.pod).
+
+Now if we run `minil test`, not only the test will be executed but we will
+also get our `META.json` file regenerated so that it includes the `Moo`
+dependency.
+
 ## Creating the distribution tarball with Minilla
 
 TODO: `Changes` file.
-TODO: `Moo` dependency!
 
 Now we have a decent quality distribution, it does something and tests and
 documentation are there! Let's create the distribution tarball now. It is as
