@@ -434,12 +434,13 @@ Don't forget to `git add` and `git commit` your changes.
 ## Handling dependencies
 
 You might have noted that we were using `Moo` module in our
-`Acme::Hola::Translator` module. The code for us without any problems because
-coincidentally the `Moo` distribution is a dependency of `Minilla`. But when
-another user installs our distribution, their don't necessarily have the `Moo`
-dependency installed. To be sure that the dependency is installed, we need to
-specify it in `META.json` package. To simplify the process, there is
-`cpanfile` pre-created by `Minilla` in our distribution directory.
+`Acme::Hola::Translator` module. The code worked for us without any problems
+because coincidentally the `Moo` distribution (which contains `Moo` module) is
+a dependency of `Minilla`. But when another user installs our distribution,
+their don't necessarily have the `Moo` dependency installed. To be sure that
+the dependency is installed, we need to specify it in `META.json` package. To
+simplify the process, there is `cpanfile` pre-created by `Minilla` in our
+distribution directory.
 
 Let's add the dependency there:
 
