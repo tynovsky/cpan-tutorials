@@ -4,10 +4,10 @@ title: Make Your Own CPAN Distribution
 ---
 # Make Your Own CPAN Distribution
 
-Creating and publishing your own gem is simple thanks to the tools baked right
-into the cpan ecosystem. Let's make a simple "hello world" distribution, and
-feel free to play along at home! The code of the distribution we're going to
-make here is up on GitHub.
+Creating and publishing your own distribution is simple thanks to the tools
+baked right into the CPAN ecosystem. Let's make a simple "hello world"
+distribution, and feel free to play along at home! The code of the distribution
+we're going to make here is up on GitHub.
 
 ## Your first distribution
 

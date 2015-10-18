@@ -33,7 +33,7 @@ feature of `cpanm` tool, At the moment, it's not possible to do the same with
 original `cpan` command or specify a git repository as a dependency of another
 distribution.
 
-## Serving your own Gems
+## Serving your own distributions
 
 If you want to control who can install a distribution, or directly track the
 activity surrounding a distribution, then you'll want to set up a private
@@ -76,6 +76,6 @@ line (`Minilla` will take care of the rest).
 ## Push permissions on CPAN
 
 If you have multiple maintainers for your distribution, you can give your
-fellow maintainers permission to push the gem to CPAN through [adding a
-co-maintainer](http://www.cpan.org/modules/04pause.html#add-comaintainer)
-at the PAUSE website.
+fellow maintainers permission to push the distribution to CPAN through [adding
+a co-maintainer](http://www.cpan.org/modules/04pause.html#add-comaintainer) at
+the PAUSE website.
