@@ -70,8 +70,8 @@ It is a good practice to include `Changes` file with your distribution. It
 contains a description of every released version. This time, we had the file
 pre-created by Minilla, it only contained one line saying this is the initial
 version of our distribution. Next time when you're releasing the next version
-of your distribution, be sure to have your improvements listed under {{$NEXT}}
-line (`Minilla` will take care of the rest).
+of your distribution, be sure to have your improvements listed under
+`{{$NEXT}}` line (`Minilla` will take care of the rest).
 
 ## Push permissions on CPAN
 
