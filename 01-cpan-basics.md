@@ -31,8 +31,8 @@ regular expression):
     Distribution    ETHER/MooseX-Types-Path-Tiny-0.011.tar.gz
     4 items found
 
-You can also search for distributions online at http://metacpan.org or
-http://search.cpan.org.
+You'll be probably mostly searching for distributions online at
+[MetaCPAN](http://metacpan.org) or [CPAN Search](http://search.cpan.org).
 
 
 ## Installing CPAN distributions

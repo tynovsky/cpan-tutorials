@@ -20,8 +20,8 @@ world.
 The simplest way (from the author's perspective) to share a distribution for
 other developers' use is to distribute it in source code form. If you place
 the full source code for your distribution on a public git repository (often,
-though not always, this means sharing it via GitHub), then other users can
-install it with cpanm's git functionality.
+though not always, this means sharing it via [GitHub](https://github.com)),
+then other users can install it with cpanm's git functionality.
 
 For example, you can install the latest code for the `Path::Tiny` distribution
 by running
@@ -29,7 +29,7 @@ by running
     cpanm https://github.com/dagolden/Path-Tiny.git
 
 Installing a distribution directly from a git repository is an additional
-feature of `cpanm` tool, At the moment, it's not possible to do the same with
+feature of `cpanm` tool. At the moment, it's not possible to do the same with
 original `cpan` command or specify a git repository as a dependency of another
 distribution.
 

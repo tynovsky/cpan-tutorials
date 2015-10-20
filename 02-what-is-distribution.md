@@ -33,8 +33,8 @@ A distribution usually has the following directory structure:
     ├── lib
     │   └── Sample
     │       └── Distribution.pm
-    └── t
-        └── 00_my_first_test.t
+    ├── t
+    │   └── 00_my_first_test.t
     ├── README
     ├── Changes
     ├── LICENSE
@@ -73,6 +73,10 @@ described those which are in almost all distributions.
 ## Further reading
 
 The next section will show you how to create your own distribution.
+
+See [Neil Bowers' *A spotter's guide to
+CPAN*](http://neilb.org/2015/10/18/spotters-guide.html) for detailed
+description of all files you can encounter in a distribution.
 
 See
   [Module::Build](https://metacpan.org/pod/release/LEONT/Module-Build-0.4214/lib/Module/Build.pm)

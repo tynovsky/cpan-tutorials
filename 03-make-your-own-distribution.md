@@ -191,7 +191,7 @@ translations to other languages.
                 english => 'Hello world',
                 spanish => 'Hola mundo',
             );
-            return $how_to_say_hi_in{$self->language};
+            return $how_to_say_hi_in{ $self->language }
         }
     }
 
@@ -226,7 +226,7 @@ not change much:
             english => 'Hello world',
             spanish => 'Hola mundo',
         );
-        return $how_to_say_hi_in{$self->language};
+        return $how_to_say_hi_in{ $self->language }
     }
 
     1
@@ -246,7 +246,7 @@ But now the `Acme/Hola.pm` file has some code to load the `Translator`:
         my ($language) = @_;
         $language //= 'english';
         my $translator = Acme::Hola::Translator->new(language => $language);
-        return $translator->hi();
+        return $translator->hi()
     }
 
     1
@@ -401,7 +401,7 @@ like:
     =head1 SYNOPSIS
 
         use Acme::Hola;
-        Acme::Hola::hi("spanish);
+        Acme::Hola::hi('spanish');
 
         # or in your shell:
         hola spanish
@@ -409,7 +409,7 @@ like:
     =head1 DESCRIPTION
 
     Acme::Hola is a library that greets world in given language. Together with
-    the module an executable `hola` is installed which does the same on
+    the module an executable C<hola> is installed which does the same on
     command line.
 
     =head1 LICENSE
