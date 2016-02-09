@@ -336,7 +336,7 @@ of code.
 
 Distributions support adding test files into the package itself so tests can
 be run when a distribution is installed. An entire community effort has sprung
-up called CPAN Testers to hel document how CPAN distribution test suites run
+up called CPAN Testers to help document how CPAN distribution test suites run
 on different architectures and interpreters of Perl.
 
 In short: *Test your distribution!* Please!
@@ -454,7 +454,7 @@ Let's add the dependency there:
 
 The format of `cpanfile` is self-explanatory, you can see there is a section
 for modules which are only needed during testing. If you want to know all
-possible usages, please read [the documetation of
+possible usages, please read [the documentation of
 `cpanfile`](https://metacpan.org/pod/distribution/Module-CPANfile/lib/cpanfile.pod).
 
 Now if we run `minil test`, not only the test will be executed but we will
