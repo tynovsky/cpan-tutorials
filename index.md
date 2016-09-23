@@ -22,4 +22,9 @@ and speed up your work.
 1. [Make your own CPAN distribution](03-make-your-own-distribution.html)
 1. [Publishing your CPAN distribution](04-publishing-your-cpan-distribution.html)
 
+## Please contribute
+
+Have you found a mistake or have any idea to improve the tutorials? Please open
+an issue on the [Github project of CPAN tutorials](https://github.com/tynovsky/cpan-tutorials) or send a pull request.
+
 {% include LICENSE.md %}
